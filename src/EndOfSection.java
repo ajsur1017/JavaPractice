@@ -88,6 +88,12 @@ public class EndOfSection {
 
         System.out.println("\nYour final score is " + finalScore + " out of 5.");
     }
+
+    // Back in “Coding Challenge 4 - Loops”, for Exercise 5, you were tasked to write a guess-my-number game.
+    // The program picked a random number from 1 and 100 and you had to guess it.
+    //This time, reverse the roles. Think of a number from 1 to 100 and write a program which tries to guess it.
+    // Type “higher” if the program guesses too low, or “lower” if the program guesses too high.
+    // Have the program make subsequent guesses based on this information. When the program guesses your number type “correct” and end the program.
     public static void section103() {
         System.out.println("\n### Guess My Number Game ###\n");
 
@@ -127,8 +133,46 @@ public class EndOfSection {
             }
         }
     }
+    // If you have not already done so, modify Exercise 3 so the program guesses your number in the least amount of steps.
     public static void section104() {
+        System.out.println("\n### Guess My Number Game ###\n");
 
+        System.out.println("--- Rules ---");
+        System.out.println("Think of a number from 1 to 100 and I'll try to guess it.");
+        System.out.println("Enter \"higher\" if my guess is too low.");
+        System.out.println("Enter \"lower\" if my guess is too high.");
+        System.out.println("Enter \"correct\" if I get it right.");
+
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        int min = 1;
+        int max = 100;
+        int guess = 50;
+
+        while (true) {
+            System.out.println("\nI guess " + guess + ".");
+            System.out.print("Your response: ");
+            input = scanner.next();
+
+            if (input.equals("higher")) {
+                min = guess + 1;
+            } else if (input.equals("lower")) {
+                max = guess - 1;
+            } else if (input.equals("correct")) {
+                System.out.println("\n" + guess + ", easy peasy!");
+                break;
+            }
+
+            guess = (min + max) / 2;
+
+            if (min == max + 1) {
+                System.out.println("\nThat's not possible. Let's try again.");
+                min = 1;
+                max = 100;
+                guess = 50;
+            }
+        }
 
     }
 
